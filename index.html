@@ -44,24 +44,30 @@
 <body>
     <!-- Your website content goes here -->
 
-    <div class="matrix-container">
-        <div class="matrix-text"> <!-- Add more lines like this to create the Matrix rain effect -->
-            01¾½¼≈÷¶░▒▓■
-        </div>
-    </div>
+    <div class="matrix-container" id="matrix-container"></div>
 
     <script>
-        // JavaScript for generating Matrix-like text goes here
         function createMatrixText() {
-            const textContainer = document.querySelector(".matrix-text");
+            const matrixContainer = document.getElementById("matrix-container");
             const text = "01¾½¼≈÷¶░▒▓■";
-            const speed = 50; // Adjust the speed as needed
-
+            const numSymbols = 100; // Number of symbols to create
+            const speed = 1000; // Symbol creation interval in milliseconds
+            
             setInterval(function () {
                 const randomCharacter = text.charAt(Math.floor(Math.random() * text.length));
-                const newTextElement = document.createElement("span");
+                const newTextElement = document.createElement("div");
                 newTextElement.textContent = randomCharacter;
-                textContainer.appendChild(newTextElement);
+                newTextElement.className = "matrix-text";
+                newTextElement.style.left = Math.floor(Math.random() * 100) + "vw"; // Random horizontal position
+                newTextElement.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random fade duration
+                newTextElement.style.opacity = 0; // Start with 0 opacity
+
+                matrixContainer.appendChild(newTextElement);
+
+                // Remove elements after animation completes
+                newTextElement.addEventListener("animationiteration", function () {
+                    matrixContainer.removeChild(newTextElement);
+                });
             }, speed);
         }
 
