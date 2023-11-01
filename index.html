@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix Emulator</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: "Courier New", monospace;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .matrix-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            user-select: none;
+            z-index: -1;
+        }
+
+        .matrix-text {
+            position: absolute;
+            animation: matrix-fall 10s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes matrix-fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Your website content goes here -->
+
+    <div class="matrix-container">
+        <div class="matrix-text"> <!-- Add more lines like this to create the Matrix rain effect -->
+            // Your Matrix-like text here
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for generating Matrix-like text goes here
+        function createMatrixText() {
+            const textContainer = document.querySelector(".matrix-text");
+            const text = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const speed = 50; // Adjust the speed as needed
+
+            setInterval(function () {
+                const randomCharacter = text.charAt(Math.floor(Math.random() * text.length));
+                const newTextElement = document.createElement("span");
+                newTextElement.textContent = randomCharacter;
+                textContainer.appendChild(newTextElement);
+            }, speed);
+        }
+
+        createMatrixText();
+    </script>
+</body>
+</html>
