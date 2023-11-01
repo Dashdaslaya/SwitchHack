@@ -50,24 +50,26 @@
         function createMatrixText() {
             const matrixContainer = document.getElementById("matrix-container");
             const text = "01¾½¼≈÷¶░▒▓■";
-            const numSymbols = 100; // Number of symbols to create
-            const speed = 1000; // Symbol creation interval in milliseconds
-            
+            const numSymbols = 300; // Increase the number of symbols
+            const speed = 500; // Symbol creation interval in milliseconds
+
             setInterval(function () {
-                const randomCharacter = text.charAt(Math.floor(Math.random() * text.length));
-                const newTextElement = document.createElement("div");
-                newTextElement.textContent = randomCharacter;
-                newTextElement.className = "matrix-text";
-                newTextElement.style.left = Math.floor(Math.random() * 100) + "vw"; // Random horizontal position
-                newTextElement.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random fade duration
-                newTextElement.style.opacity = 0; // Start with 0 opacity
+                for (let i = 0; i < numSymbols; i++) {
+                    const randomCharacter = text.charAt(Math.floor(Math.random() * text.length));
+                    const newTextElement = document.createElement("div");
+                    newTextElement.textContent = randomCharacter;
+                    newTextElement.className = "matrix-text";
+                    newTextElement.style.left = Math.floor(Math.random() * 100) + "vw"; // Random horizontal position
+                    newTextElement.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random fade duration
+                    newTextElement.style.opacity = 0; // Start with 0 opacity
 
-                matrixContainer.appendChild(newTextElement);
+                    matrixContainer.appendChild(newTextElement);
 
-                // Remove elements after animation completes
-                newTextElement.addEventListener("animationiteration", function () {
-                    matrixContainer.removeChild(newTextElement);
-                });
+                    // Remove elements after animation completes
+                    newTextElement.addEventListener("animationiteration", function () {
+                        matrixContainer.removeChild(newTextElement);
+                    });
+                }
             }, speed);
         }
 
